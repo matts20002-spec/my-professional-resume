@@ -16,4 +16,5 @@ jobs:
               username: ch00sen123 # The Docker Hub username is stored as a secret in the repository settings
               password: ${{ secrets.DOCKER_PASS1 }} # The Docker Hub password is also stored as a secret in the repository settings
           - name: Push image
-            run: docker push matts20002-spec/cicd-portoile1 # This          
+            run: 
+               docker push matts20002-spec/cicd-portoile1 # This step pushes the built Docker image to Docker Hub
