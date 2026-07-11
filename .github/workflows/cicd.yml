@@ -7,11 +7,11 @@ jobs:
         runs-on: ubuntu-latest # The job will run on the latest version of Ubuntu
         steps:
           - name: Checkout repository # This step checks out the repository so that the workflow can access its contents
-            uses: actions/checkout@v3
+            uses: actions/checkout@v4
           - name: Build image
             run: docker build -t matts20002-spec/cicd-portoile1 . # This step builds a Docker image using the Dockerfile in the repository
           - name: docker login
-            uses: docker/login-action@v2 # This step logs in to Docker Hub using the provided username and password
+            uses: docker/login-action@v3 # This step logs in to Docker Hub using the provided username and password
             with:
               username: ch00sen123 # The Docker Hub username is stored as a secret in the repository settings
               password: ${{ secrets.DOCKER_PASS1 }} # The Docker Hub password is also stored as a secret in the repository settings
