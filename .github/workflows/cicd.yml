@@ -14,16 +14,16 @@ jobs:
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
-          exit-code: '1'
+          exit-code: 1
           severity: CRITICAL,HIGH
       - name: Set up Docker Build
         run: docker build -t 422032869125.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest .
       - name: scan docker image with trivy
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-            image-ref: '422032869125.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest'
+            image-ref: 422032869125.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
             format: table
-            exit-code: '1'
+            exit-code: 1
             severity: CRITICAL,HIGH
             ignore-unfixed: true
       - name: push image to ecr
