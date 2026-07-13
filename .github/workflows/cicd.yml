@@ -34,21 +34,9 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::422032869125:role/github-action-role
           aws-region: us-east-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Push the Docker image to ECR
+        run: docker push 422032869125.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
         
-
-     #- name: Log in to Amazon ECR
-       #uses: aws-actions/amazon-ecr-login@v1
-
-      # - name: Build and push Docker image
-      #   env:
-      #     ECR_REPOSITORY: my-ecr-repo
-      #     AWS_REGION: us-east-1
-      #   run: |
-      #     # Build the Docker image
-      #     docker build -t $IMAGE_NAME .
-      #
-      #     # Tag the Docker image for ECR
-      #     docker tag $IMAGE_NAME:latest $ECR_REPOSITORY:$IMAGE_NAME
-      #
-      #     # Push the Docker image to ECR
-      #     docker push $ECR_REPOSITORY:$IMAGE_NAME
