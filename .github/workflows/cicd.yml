@@ -57,7 +57,7 @@ jobs:
       - name: Download current task definition
         run: |
           aws ecs describe-task-definition \
-            --task-definition my-task-definition \
+            --task-definition cadette1 \
             --query taskDefinition > task-definition.json
 
       - name: Fill in new image ID
@@ -65,13 +65,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: my-container
+          container-name: cadette20 
           image: ${{ secrets.ECR_REPO }}/my-repo:latest
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: my-ecs-service
-          cluster: my-ecs-cluster
+          service: cadette1-service 
+          cluster: cadetteDevops
           wait-for-service-stability: true
